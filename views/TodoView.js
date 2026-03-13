@@ -16,15 +16,38 @@ export default class TodoView{
 
       li.dataset.id=todo.id
 
-      li.innerHTML=`
-        <span class="text">${todo.todo}</span>
+      const span = document.createElement("span")
+      span.className = "text"
+      span.textContent = todo.todo
 
-        <div class="buttons">
-          <button class="toggle">${todo.completed ? "←" : "→"}</button>
-          <button class="edit">✏</button>
-          <button class="delete">🗑</button>
-        </div>
-      `
+      const buttonsDiv = document.createElement("div")
+      buttonsDiv.className = "buttons"
+
+      const editBtn = document.createElement("button")
+      editBtn.className = "edit"
+      editBtn.textContent = "✏"
+
+      const deleteBtn = document.createElement("button")
+      deleteBtn.className = "delete"
+      deleteBtn.textContent = "🗑"
+
+      const toggleBtn = document.createElement("button")
+      toggleBtn.className = "toggle"
+      toggleBtn.textContent = todo.completed ? "←" : "→"
+
+      buttonsDiv.appendChild(editBtn)
+      buttonsDiv.appendChild(deleteBtn)
+      buttonsDiv.appendChild(toggleBtn)
+
+      if(todo.completed){
+        li.appendChild(toggleBtn)
+        li.appendChild(span)
+        li.appendChild(buttonsDiv)
+      }else{
+        li.appendChild(span)
+        buttonsDiv.appendChild(toggleBtn)
+        li.appendChild(buttonsDiv)
+      }
 
       if(todo.completed){
         this.completedList.appendChild(li)
