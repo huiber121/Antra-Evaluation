@@ -1,20 +1,20 @@
-export default class TodoView{
+export default class TodoView {
 
-  constructor(){
+  constructor() {
     this.pendingList = document.getElementById("pendingList")
     this.completedList = document.getElementById("completedList")
   }
 
-  render(todos){
+  render(todos) {
 
-    this.pendingList.innerHTML=""
-    this.completedList.innerHTML=""
+    this.pendingList.innerHTML = ""
+    this.completedList.innerHTML = ""
 
-    todos.forEach(todo=>{
+    todos.forEach(todo => {
 
-      const li=document.createElement("li")
+      const li = document.createElement("li")
 
-      li.dataset.id=todo.id
+      li.dataset.id = todo.id
 
       const span = document.createElement("span")
       span.className = "text"
@@ -39,19 +39,19 @@ export default class TodoView{
       buttonsDiv.appendChild(deleteBtn)
       buttonsDiv.appendChild(toggleBtn)
 
-      if(todo.completed){
+      if (todo.completed) {
         li.appendChild(toggleBtn)
         li.appendChild(span)
         li.appendChild(buttonsDiv)
-      }else{
+      } else {
         li.appendChild(span)
         buttonsDiv.appendChild(toggleBtn)
         li.appendChild(buttonsDiv)
       }
 
-      if(todo.completed){
+      if (todo.completed) {
         this.completedList.appendChild(li)
-      }else{
+      } else {
         this.pendingList.appendChild(li)
       }
 
